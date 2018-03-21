@@ -24,12 +24,21 @@ int main()
     /* Создаем объект для представления текста */
     text txt = create_text();
 
+
     /* Цикл обработки команд */
     while (1) {
         printf("ed> ");
 
         /* Получаем команду */
-        fgets(cmdline, MAXLINE, stdin);
+      char* pp= fgets(cmdline, MAXLINE, stdin);
+
+       if (pp!=NULL)
+       {
+
+
+
+
+
 
         /* Извлекаем имя команды */
         if ((cmd = strtok(cmdline, " \n")) == NULL) {
@@ -137,5 +146,7 @@ int main()
         fprintf(stderr, "Unknown command: %s\n", cmd);
     }
 
-    return 0;
+
+    }return 0;
 }
+
