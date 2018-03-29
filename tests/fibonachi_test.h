@@ -59,8 +59,22 @@ TEST(fourth,r4)
 }
 
 
+TEST (rh,r1)
+{
+   char* filename=(char*) malloc(1024 * sizeof(char));
+        sprintf(filename,"%s/stroka.txt",INPUTDIR);
 
 
+ text txt =create_text();
+          load(txt,filename);
+                    rh(txt);
+
+
+
+                        SUCCEED();
+
+
+}
 
 
 
