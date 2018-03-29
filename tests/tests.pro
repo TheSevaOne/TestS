@@ -15,6 +15,7 @@ QMAKE_CFLAGS += -fprofile-arcs -ftest-coverage
 LIBS += -lgcov
 
 DEFINES += INPUTDIR=\\\"$$PWD/input\\\"
+DEFINES += OUTPUT=\\\"$$PWD/OUTPUT\\\"
 HEADERS +=  \
     ../app/common.h\
       ../app/text/text.h\
