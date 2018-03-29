@@ -2,10 +2,13 @@
 #define FIBONACHI_H
 #include <gtest/gtest.h>
 #include <stdio.h>
+#include <io.h>
+#include<stdlib.h>
+#define STDOUT 1
 extern "C" {
 #include "text/text.h"
 }
-TEST (first, r1)
+TEST (curentline, r1)
 {
 
     text txt=create_text();
@@ -13,7 +16,7 @@ TEST (first, r1)
 
 }
 
-TEST(second,r2)
+TEST(curentline,r2)
 {
     char* filename=(char*) malloc(1024 * sizeof(char));
     sprintf(filename,"%s/first.txt",INPUTDIR);
@@ -26,7 +29,7 @@ p=currentline(txt);
 ASSERT_EQ(p,1);
 }
     
-TEST(third,r3)
+TEST(curentline,r3)
 {
 
     char* filename=(char*) malloc(1024 * sizeof(char));
@@ -44,7 +47,7 @@ TEST(third,r3)
 
 }
 
-TEST(fourth,r4)
+TEST(curentline,r4)
 {
 
     char* filename=(char*) malloc(1024 * sizeof(char));
@@ -58,6 +61,16 @@ TEST(fourth,r4)
         ASSERT_EQ(p,3);
 }
 
+TEST (rh,r1)
+{
+   char* filename=(char*) malloc(1024 * sizeof(char));
+        sprintf(filename,"%s/stroka.txt",INPUTDIR);
+
+
+ text txt =create_text();
+          load(txt,filename);
+                    rh(txt);
+
 
 TEST (rh,r1)
 {
@@ -70,6 +83,10 @@ TEST (rh,r1)
                     rh(txt);
 
 
+                        SUCCEED();
+
+
+}
 
                         SUCCEED();
 
