@@ -2,8 +2,14 @@
 #define FIBONACHI_H
 #include <gtest/gtest.h>
 #include <stdio.h>
+#include<string.h>
+#include<fcntl.h>
 extern "C" {
 #include "text/text.h"
+#include "text/_text.h"
+#include <io.h>
+#include"common.h"
+#define STDOUT 1
 }
 TEST (first, r1)
 {
@@ -68,22 +74,57 @@ TEST (rh,r1)
  text txt =create_text();
           load(txt,filename);
                     rh(txt);
-
-
-
-                        SUCCEED();
+      SUCCEED();
 
 
 }
+TEST(rhsecond,r2)
+{
+    char* filename=(char*) malloc(1024 * sizeof(char));
+         sprintf(filename,"%s/stroka.txt",INPUTDIR);
+int fptr;
+          int oldstdout;
+          fptr = open("%s/DUMMY.BIL",O_CREAT|O_RDWR,S_IREAD|S_IWRITE);
+
+            oldstdout = dup(STDOUT);
+            dup2(fptr,STDOUT);
+            close(fptr);
+
+            text txt = create_text();
+            load(txt,filename);
+            rh(txt);
+            dup2(oldstdout,STDOUT);
+
+            FILE *d;
+            d =fopen("%s/stroka.txt","rw");
+            if(d == NULL){
+               FAIL();
+                   return;
+            }
+            char *buf2 = (char*)malloc(sizeof(char)*512);
+            int readcount2 = fread(buf2,1,512,d);
+
+
+       FILE *t;
+            t = fopen("%s/DUMMY.BIL","rw");
+            if(t == NULL)
+            {
+               FAIL();
+                   return;
+            }
+       char *buf = (char*)malloc(sizeof(char)*512);
+          int readcount = fread(buf,1,512,t);
 
 
 
+            fclose(t);
+            fclose(d);
+            if (readcount2 >readcount)
+            {
+                SUCCEED();
+            }
+        }
 
-
-
-
-
-    
   #endif // FIBONACHI_H
 
 

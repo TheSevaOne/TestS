@@ -52,7 +52,7 @@ void  rh(text txt)
     if (txt->begin->next == NULL)
     {
 	remove_all(txt);
-	return;
+    return;
     }
 
 if(txt->cursor->line == txt->begin)
