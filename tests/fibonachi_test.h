@@ -126,7 +126,62 @@ int fptr;
             {
                 SUCCEED();
             }
-        }
+}
+            TEST(rhthird,r3)
+            {
+                char* filename=(char*) malloc(1024 * sizeof(char));
+                     sprintf(filename,"%s/stroka.txt",INPUTDIR);
+
+                     int fptr;
+                               int oldstdout;
+                               fptr = open("DUMMY.BIL",O_CREAT|O_RDWR,S_IREAD|S_IWRITE);
+
+                                 oldstdout = dup(STDOUT);
+                                 dup2(fptr,STDOUT);
+                                 close(fptr);
+
+
+
+
+                     text txt=create_text();
+                     load(txt, filename);
+                     c_to_pos(txt,0,0);
+                 rh(txt);
+                 dup2(oldstdout,STDOUT);
+
+                 FILE *d;
+                 d =fopen(filename,"rw");
+                 if(d == NULL){
+                    FAIL();
+                        return;
+                 }
+                 char *buf2 = (char*)malloc(sizeof(char)*512);
+                 int readcount2 = fread(buf2,1,512,d);
+
+
+            FILE *t;
+                 t = fopen("DUMMY.BIL","rw");
+                 if(t == NULL)
+                 {
+                    FAIL();
+                        return;
+                 }
+            char *buf = (char*)malloc(sizeof(char)*512);
+               int readcount = fread(buf,1,512,t);
+
+
+
+                 fclose(t);
+                 fclose(d);
+                 if (readcount2 >readcount)
+                 {
+                     SUCCEED();
+                 }
+     }
+
+
+
+
 
   #endif // FIBONACHI_H
 
