@@ -4,10 +4,10 @@
 #include <stdio.h>
 #include<string.h>
 #include<fcntl.h>
+
 extern "C" {
 #include "text/text.h"
 #include "text/_text.h"
-#include <io.h>
 #include"common.h"
 #define STDOUT 1
 }
@@ -65,10 +65,13 @@ TEST(fourth,r4)
 }
 
 
+
 TEST (rh,r1)
 {
    char* filename=(char*) malloc(1024 * sizeof(char));
         sprintf(filename,"%s/stroka.txt",INPUTDIR);
+
+
 
 
  text txt =create_text();
@@ -84,7 +87,7 @@ TEST(rhsecond,r2)
          sprintf(filename,"%s/stroka.txt",INPUTDIR);
 int fptr;
           int oldstdout;
-          fptr = open("%s/DUMMY.BIL",O_CREAT|O_RDWR,S_IREAD|S_IWRITE);
+          fptr = open("DUMMY.BIL",O_CREAT|O_RDWR,S_IREAD|S_IWRITE);
 
             oldstdout = dup(STDOUT);
             dup2(fptr,STDOUT);
@@ -96,7 +99,7 @@ int fptr;
             dup2(oldstdout,STDOUT);
 
             FILE *d;
-            d =fopen("%s/stroka.txt","rw");
+            d =fopen(filename,"rw");
             if(d == NULL){
                FAIL();
                    return;
@@ -106,7 +109,7 @@ int fptr;
 
 
        FILE *t;
-            t = fopen("%s/DUMMY.BIL","rw");
+            t = fopen("DUMMY.BIL","rw");
             if(t == NULL)
             {
                FAIL();
