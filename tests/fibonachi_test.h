@@ -130,7 +130,7 @@ int fptr;
             TEST(rhthird,r3)
             {
                 char* filename=(char*) malloc(1024 * sizeof(char));
-                     sprintf(filename,"%s/stroka.txt",INPUTDIR);
+                     sprintf(filename,"%s/4.txt",INPUTDIR);
 
                      int fptr;
                                int oldstdout;
@@ -177,7 +177,17 @@ int fptr;
                  {
                      SUCCEED();
                  }
+
+
      }
+
+
+
+
+
+
+
+
 
 
 
